@@ -1,7 +1,9 @@
 package com.example.Homewor_1.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
-import jakarta.persistence.Id;
 
 
 
@@ -17,6 +19,16 @@ public class Student {
     @Column
     private String name;
 
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY , cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Teacher_Student> teacher_students = new ArrayList<>();
+
+    public List<Teacher_Student> getTeacher_students() {
+        return this.teacher_students;
+    }
+
+    public void setTeacher_students(List<Teacher_Student> teacher_students) {
+        this.teacher_students = teacher_students;
+    }
 
     public int getId() {
         return this.id;
